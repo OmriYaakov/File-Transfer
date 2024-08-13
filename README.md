@@ -1,42 +1,30 @@
-
-"""
 # File Transfer Application
 
 ## Overview
 
-This project implements a client-server file transfer application in Python. The server manages connections and facilitates file transfers between clients, while the client provides a GUI for selecting and sending files to other connected users.
+This project implements a client-server file transfer application in Python. The client, packaged as `fileTransfer.exe`, provides a GUI for selecting and sending files to other connected users. The server is hosted on GitHub Pages and manages connections and facilitates file transfers between clients.
 
 ## Prerequisites
 
-- Python 3.x
-- `socket` (Python standard library)
-- `struct` (Python standard library)
-- `tkinter` (Python standard library)
+- `fileTransfer.exe` (The client executable)
+- Internet access (to connect to the server hosted on GitHub Pages)
 
 ## Installation
 
-1. **Clone the repository or download the source code.**
+1. **Download the `fileTransfer.exe` executable.**
 
-2. **the server is running:**
+2. **Run the executable:**
 
-    ```
-    code: server.py
-    ```
-
-3. **Run the client:**
-
-    ```bash
-    launch FileTransfer.exe
-    ```
+    Simply double-click `fileTransfer.exe` to start the client application.
 
 ## Usage
 
 ### Server
 
-- **Run the server:** The server listens for incoming client connections and handles file transfers.
+- **Hosted on GitHub Pages:** The server is automatically managed and does not require any local setup.
 - **User Management:** The server keeps track of connected users and broadcasts this information.
 
-### Client
+### Client (fileTransfer.exe)
 
 - **Connect to Server:** Enter a username to connect to the server.
 - **Send Files:** Select a user from the list of online users and choose a file to send.
@@ -44,8 +32,7 @@ This project implements a client-server file transfer application in Python. The
 
 ## File Structure
 
-- **server.py**: Contains the server code for managing client connections and file transfers.
-- **client.py**: Contains the client code for connecting to the server, sending files, and receiving files.
+- **fileTransfer.exe**: The client executable for connecting to the server, sending files, and receiving files.
 - **README.md**: This file, providing an overview and instructions.
 
 ## Author
@@ -55,4 +42,3 @@ This project implements a client-server file transfer application in Python. The
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-"""
