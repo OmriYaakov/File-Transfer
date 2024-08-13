@@ -39,6 +39,3 @@ This project implements a client-server file transfer application in Python. The
 
 - **Omri Yaakov**
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
