@@ -17,16 +17,16 @@ This project implements a client-server file transfer application in Python. The
 
 1. **Clone the repository or download the source code.**
 
-2. **Run the server:**
+2. **the server is running:**
 
-    ```bash
-    python server.py
+    ```
+    code: server.py
     ```
 
 3. **Run the client:**
 
     ```bash
-    python client.py
+    launch FileTransfer.exe
     ```
 
 ## Usage
