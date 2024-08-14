@@ -1,8 +1,6 @@
 import socket
 import threading
 import struct
-from flask import Flask, request, jsonify
-from flask_cors import CORS
 import os
 
 app = Flask(__name__)
@@ -11,7 +9,6 @@ app = Flask(__name__)
 # Server Details: A Server that accepts new clients and forwards files from one client to another.
 
 class Server:
-    @app.route('/__init__', methods=['POST'])
     #Initialize the server, configure the TCP socket, and prepare to accept client connections.
     def __init__(self, tcp_port=5011):
         self.tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -22,7 +19,6 @@ class Server:
         self.clients = {}  
 
     #Send a message to all connected clients, optionally excluding one specific client.
-    @app.route('/broadcast', methods=['POST'])
     def broadcast(self, message, exclude_client=None):
         encoded_message = message.encode()
         message_length = struct.pack('!I', len(encoded_message))
@@ -34,7 +30,6 @@ class Server:
                     self.remove_client(client)
 
     #Remove a client from the server's list, notify others of their departure, and update the online users list.
-    @app.route('/remove_client', methods=['POST'])
     def remove_client(self, client_socket):
         username = self.clients.pop(client_socket, None)
         if username:
@@ -42,14 +37,12 @@ class Server:
             self.broadcast_online_users()
 
     #Broadcast the current list of online users to all connected clients.
-    @app.route('/broadcast_online_users', methods=['POST'])
     def broadcast_online_users(self):
         online_users = ",".join(self.clients.values())
         print(f"Broadcasting online users: {online_users}")
         self.broadcast(f"ONLINE_USERS:{online_users}")
 
     #Handle the communication with a connected TCP client, including receiving messages and processing file transfers.
-    @app.route('/handle_tcp_client', methods=['GET'])
     def handle_tcp_client(self, client_socket):
         try:
             username = client_socket.recv(1024).decode()
@@ -83,7 +76,6 @@ class Server:
             client_socket.close()
 
     #Helper function to receive an exact number of bytes from a client socket.
-    @app.route('/_recv_exact', methods=['GET'])
     def _recv_exact(self, sock, size):
         buffer = b""
         while len(buffer) < size:
@@ -94,7 +86,6 @@ class Server:
         return buffer
 
     #Process an incoming file transfer request and forward the file to the intended recipient(s).
-    @app.route('/handle_file_transfer', methods=['GET'])
     def handle_file_transfer(self, client_socket, data):
         try:
             print("Starting file transfer...")
@@ -132,7 +123,6 @@ class Server:
             print(f"Error during file transfer: {e}")
 
     #Send the specified file data to the designated recipient client.
-    @app.route('/send_file', methods=['POST'])
     def send_file(self, recipient_socket, recipient_name, sender_name, file_name, file_data):
         try:
             message = f"@#@#@#{recipient_name}@#@#@{sender_name}@#@#@{len(file_data)}@#@#@{file_name}@#@#@".encode() + file_data
@@ -143,7 +133,6 @@ class Server:
             print(f"Error sending file to client: {e}")
 
     #Continuously accept new client connections and start a new thread to handle each client.
-    @app.route('/run', methods=['POST'])
     def run(self):
         while True:
             client_socket, addr = self.tcp_server_socket.accept()
