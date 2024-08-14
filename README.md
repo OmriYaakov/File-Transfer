@@ -7,7 +7,7 @@ This project implements a client-server file transfer application in Python. The
 ## Prerequisites
 
 - `fileTransfer.exe` (The client executable)
-- Internet access (to connect to the server hosted on GitHub Pages)
+- Internet access (to connect to the server hosted Online)
 
 ## Installation
 
@@ -21,7 +21,7 @@ This project implements a client-server file transfer application in Python. The
 
 ### Server
 
-- **Hosted on GitHub Pages:** The server is automatically managed and does not require any local setup.
+- **Hosted Online:** The server is automatically managed and does not require any local setup.
 - **User Management:** The server keeps track of connected users and broadcasts this information.
 
 ### Client (fileTransfer.exe)
