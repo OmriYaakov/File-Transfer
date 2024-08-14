@@ -3,7 +3,6 @@ import threading
 import struct
 import os
 
-app = Flask(__name__)
 
 # Author: Omri Yaakov
 # Server Details: A Server that accepts new clients and forwards files from one client to another.
